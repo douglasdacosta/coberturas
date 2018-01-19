@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Animais
+ *
+ * @ORM\Table(name="animais", indexes={@ORM\Index(name="index_2", columns={"id"})})
+ * @ORM\Entity
+ */
+class Animais
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idade", type="integer", nullable=true)
+     */
+    private $idade;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="local_animal", type="string", length=200, nullable=true)
+     */
+    private $localAnimal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pelagem", type="string", length=100, nullable=true)
+     */
+    private $pelagem;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+
+}
+

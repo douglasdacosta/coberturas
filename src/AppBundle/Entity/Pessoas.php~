@@ -1,0 +1,110 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pessoas
+ *
+ * @ORM\Table(name="pessoas", indexes={@ORM\Index(name="index_1", columns={"id"})})
+ * @ORM\Entity
+ */
+class Pessoas
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=80, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cpf_cnpj", type="integer", nullable=true)
+     */
+    private $cpfCnpj;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telefone_cel", type="integer", nullable=true)
+     */
+    private $telefoneCel;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telefone_fixo", type="integer", nullable=true)
+     */
+    private $telefoneFixo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco", type="string", length=200, nullable=true)
+     */
+    private $endereco;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="complemento", type="string", length=80, nullable=true)
+     */
+    private $complemento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bairro", type="string", length=80, nullable=true)
+     */
+    private $bairro;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="estado", type="integer", nullable=true)
+     */
+    private $estado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cidade", type="integer", nullable=true)
+     */
+    private $cidade;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cep", type="integer", nullable=true)
+     */
+    private $cep;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+
+}
+

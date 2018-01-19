@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Coberturas" table="coberturas">
+    <indexes>
+      <index name="index_6" columns="garanhao_id"/>
+      <index name="fk_coberturas_2_idx" columns="animal_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="previsaoParto" type="date" column="previsao_parto" nullable="true"/>
+    <field name="dataParto" type="date" column="data_parto" nullable="true"/>
+    <field name="sexo" type="string" column="sexo" length="1" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="obito" type="date" column="obito" nullable="true"/>
+    <field name="ativo" type="integer" column="ativo" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="dataCobertura" type="date" column="data_cobertura" nullable="false"/>
+    <many-to-one field="garanhao" target-entity="Garanhoes" fetch="LAZY">
+      <join-columns>
+        <join-column name="garanhao_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="animal" target-entity="Animais" fetch="LAZY">
+      <join-columns>
+        <join-column name="animal_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

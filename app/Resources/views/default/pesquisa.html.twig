@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="row">
+                <h3>Pesquisar Cobreturas</h3>
+                <form action="/pesquisa" id="pesquisar" name="pesquisar" method="post">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input class="form-control mr-sm-2" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
+                        <a class="btn btn-success btn-md btn-size-small" href="/coberturas/incluir">Incluir</a> &nbsp;
+                        <button class=" btn btn-primary btn-md btn-size-small float-right" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div id="row" class="space-table">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Pessoa</th>
+                            <th scope="col">Animal</th>
+                            <th scope="col">Cobertura</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cobertura in coberturas %}
+
+                            <tr>
+                                <th scope="row">{{cobertura.cobertura_id}}</th>
+                                <td><a href='{{'/coberturas?pessoa=' ~ cobertura.pessoa_id ~ '&animal=' ~ cobertura.animal_id ~ '&cobertura=' ~ cobertura.cobertura_id}}'>{{cobertura.pessoa_nome}}</a></td>
+                                <td>{{cobertura.animal_nome}}</td>
+                                <td>{{cobertura.cobertura_dataCobertura.date|date("d/m/Y") }}</td>
+                            </tr>            
+
+                        {% endfor %}
+                    </tbody>
+                </table>                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

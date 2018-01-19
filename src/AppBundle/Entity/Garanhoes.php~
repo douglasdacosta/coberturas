@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Garanhoes
+ *
+ * @ORM\Table(name="garanhoes")
+ * @ORM\Entity
+ */
+class Garanhoes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=80, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="registro", type="integer", nullable=true)
+     */
+    private $registro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor_arrecadado", type="string", length=200, nullable=true)
+     */
+    private $valorArrecadado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="arvore_genealogica", type="string", length=400, nullable=true)
+     */
+    private $arvoreGenealogica;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+
+}
+

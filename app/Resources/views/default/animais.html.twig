@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{#{% block conteiner %}#}
+
+{% block body %}
+    {% if (typeForm is defined and typeForm == 'lista') %}
+        <div id="wrapper">
+            <div id="container">
+                <div id="row">
+                    <h3>Pesquisar animais</h3>
+                    <form action="/animais" id="pesquisar" name="pesquisar" class="form-inline" method="post">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input class="form-control mr-sm-2" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
+                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                            <a class="btn btn-success my-2 my-sm-0 ml-1" href="/animais/formIncluir">Incluir</a>
+                        </div>
+
+                    </form>
+                </div>
+                <div id="row" class="space-table">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Animal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for animal in animais %}
+                                <tr>
+                                    <th scope="row">{{animal.id}}</th>
+                                    <td><a href='{{'/animais/formAlterar/' ~ animal.id}}'>{{animal.nome}}</a></td>
+                                </tr>            
+
+                            {% endfor %}
+                        </tbody>
+                    </table>                
+                </div>
+            </div>
+        </div>
+    {% else %}    
+        <div id="row">
+            <h2>Animal</h2>
+            {{ form_start(form, {'action': form.vars.value.id != null ? '/animais/alterar/'~form.vars.value.id : '/animais/incluir' , 'name': 'animais', 'method':'POST'}) }}
+            <div class="form-group">
+                {{ form_label(form.nome)}}
+                {{ form_widget(form.nome, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.idade)}}
+                {{ form_widget(form.idade, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.localAnimal)}}
+                {{ form_widget(form.localAnimal, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.pelagem)}}
+                {{ form_widget(form.pelagem, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <a href="/animais" class="btn btn-danger btn-size-small">Cancelar</a>
+            <button type="submit" class="btn btn-primary float-right btn-size-small">Salvar</button>
+
+        </form>
+    </div>
+{% endif %}
+{% endblock %}
+{#{% endblock %}#}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

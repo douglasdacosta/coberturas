@@ -1,0 +1,46 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PessoasAnimais
+ *
+ * @ORM\Table(name="pessoas_animais", indexes={@ORM\Index(name="index_7", columns={"id"}), @ORM\Index(name="index_3", columns={"pessoa_id"}), @ORM\Index(name="fk_pessoas_animais_1", columns={"animal_id"})})
+ * @ORM\Entity
+ */
+class PessoasAnimais
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Animais
+     *
+     * @ORM\ManyToOne(targetEntity="Animais")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="animal_id", referencedColumnName="id")
+     * })
+     */
+    private $animal;
+
+    /**
+     * @var \Pessoas
+     *
+     * @ORM\ManyToOne(targetEntity="Pessoas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pessoa_id", referencedColumnName="id")
+     * })
+     */
+    private $pessoa;
+
+
+}
+

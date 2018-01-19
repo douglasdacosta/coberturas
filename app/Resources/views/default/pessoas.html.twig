@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{#{% block conteiner %}#}
+
+{% block body %}
+    {% if (typeForm is defined and typeForm == 'lista') %}
+        <div id="wrapper">
+            <div id="container">
+                <div id="row">
+                    <h3>Pesquisar pessoas</h3>
+                    <form action="/pessoas" id="pesquisar" name="pesquisar" class="form-inline" method="post">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input class="form-control" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
+                            <a class="btn btn-success btn-md btn-size-small" href="/pessoas/formIncluir">Incluir</a> &nbsp;
+                            <button class=" btn btn-primary btn-md btn-size-small float-right" type="submit">Search</button>
+                        </div>
+                        <div class="form-group"></div>
+                    </form>
+                </div>
+                <div id="row" class="space-table">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pessoa in pessoas %}
+                                <tr>
+                                    <th scope="row">{{pessoa.id}}</th>
+                                    <td><a href='{{'/pessoas/formAlterar/' ~ pessoa.id}}'>{{pessoa.nome}}</a></td>
+                                </tr>            
+
+                            {% endfor %}
+                        </tbody>
+                    </table>                
+                </div>
+            </div>
+        </div>
+    {% else %}        
+        <div id="row">
+            <h2>Pessoas</h2>
+            {{ form_start(form, {'action': form.vars.value.id != null ? '/pessoas/alterar/'~form.vars.value.id : '/pessoas/incluir' , 'name': 'pessoas', 'method':'POST'}) }}
+            <div class="form-group">
+                {{ form_label(form.nome)}}
+                {{ form_widget(form.nome, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email)}}
+                {{ form_widget(form.email, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.cpfCnpj)}}
+                {{ form_widget(form.cpfCnpj, { 'attr': { 'class': 'form-control input-sm cpf'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.telefoneCel)}}
+                {{ form_widget(form.telefoneCel, { 'attr': { 'class': 'form-control input-sm telefone-cel' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.telefoneFixo)}}
+                {{ form_widget(form.telefoneFixo, { 'attr': { 'class': 'form-control input-sm telefone' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.endereco)}}
+                {{ form_widget(form.endereco, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.complemento)}}
+                {{ form_widget(form.complemento, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.bairro)}}
+                {{ form_widget(form.bairro, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.estado)}}
+                {{ form_widget(form.estado, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.cidade)}}
+                {{ form_widget(form.cidade, { 'attr': { 'class': 'form-control input-sm' }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.cep)}}
+                {{ form_widget(form.cep, { 'attr': { 'class': 'form-control input-sm cep' }}) }}
+            </div>                
+            <a href="/pessoas" class="btn btn-danger btn-size-small">Cancelar</a>
+            <button type="submit" class="btn btn-primary float-right btn-size-small">Salvar</button>
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
+{% endblock %}
+{#{% endblock %}#}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
