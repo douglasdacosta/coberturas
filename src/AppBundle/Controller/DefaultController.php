@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $uri = $this->generateUrl('animais', array('search' => $data['search']));
+        $uri = $this->generateUrl('animais');
         return $this->redirect($uri, 302);
     }
 }
