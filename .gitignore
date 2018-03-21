@@ -12,4 +12,8 @@
 !/var/sessions
 /var/sessions/*
 !var/sessions/.gitkeep
+<<<<<<< HEAD
 !var/SymfonyRequirements.php
+=======
+!var/SymfonyRequirements.php
+>>>>>>> 7797d57313695fc3ab8be7a46e7d34064598d75f
