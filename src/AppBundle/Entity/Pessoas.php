@@ -36,23 +36,23 @@ class Pessoas
     private $email;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="cpf_cnpj", type="integer", nullable=true)
+     * @ORM\Column(name="cpf_cnpj", type="text", length=15, nullable=true)
      */
     private $cpfCnpj;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="telefone_cel", type="integer", nullable=true)
+     * @ORM\Column(name="telefone_cel", type="text", length=11, nullable=true)
      */
     private $telefoneCel;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="telefone_fixo", type="integer", nullable=true)
+     * @ORM\Column(name="telefone_fixo", type="text", length=11, nullable=true)
      */
     private $telefoneFixo;
 

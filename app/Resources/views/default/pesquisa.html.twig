@@ -11,13 +11,14 @@
         <div id="container">
             <div id="row">
                 <h3>Pesquisar Cobreturas</h3>
-                <form action="/pesquisa" id="pesquisar" name="pesquisar" method="post">
+                <form action="/pesquisa" id="pesquisar" name="pesquisar" class="form-inline" method="post">
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input class="form-control mr-sm-2" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
-                        <a class="btn btn-success btn-md btn-size-small" href="/coberturas/incluir">Incluir</a> &nbsp;
+                        <input class="form-control" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
+                        <a class="btn btn-success btn-md btn-size-small" href="/coberturas/formIncluir">Incluir</a> &nbsp;
                         <button class=" btn btn-primary btn-md btn-size-small float-right" type="submit">Search</button>
                     </div>
+                    <div class="form-group"></div>
                 </form>
             </div>
             <div id="row" class="space-table">
@@ -35,9 +36,9 @@
 
                             <tr>
                                 <th scope="row">{{cobertura.cobertura_id}}</th>
-                                <td><a href='{{'/coberturas?pessoa=' ~ cobertura.pessoa_id ~ '&animal=' ~ cobertura.animal_id ~ '&cobertura=' ~ cobertura.cobertura_id}}'>{{cobertura.pessoa_nome}}</a></td>
+                                <td><a href='{{'/coberturas/formAlterar?pessoa=' ~ cobertura.pessoa_id ~ '&animal=' ~ cobertura.animal_id ~ '&cobertura=' ~ cobertura.cobertura_id ~ '&formType=lista'}}'> {{cobertura.pessoa_nome}}</a></td>
                                 <td>{{cobertura.animal_nome}}</td>
-                                <td>{{cobertura.cobertura_dataCobertura.date|date("d/m/Y") }}</td>
+                                <td><a href='{{'/coberturas/formAlterar?pessoa=' ~ cobertura.pessoa_id ~ '&animal=' ~ cobertura.animal_id ~ '&cobertura=' ~ cobertura.cobertura_id ~ '&formType=alterar'}}'> {{cobertura.cobertura_dataCobertura.date|date("d/m/Y") }}</a></td>
                             </tr>            
 
                         {% endfor %}

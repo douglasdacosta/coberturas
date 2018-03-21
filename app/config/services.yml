@@ -33,3 +33,6 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    helpers.get:
+        class: AppBundle/Services;
+        arguments: ["@service_container"]

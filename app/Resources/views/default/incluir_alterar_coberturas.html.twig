@@ -1,0 +1,185 @@
+<h3>{{ cobertura_id != null ? 'Alterar Cobertura cod: ' ~ cobertura.cobertura_id : 'Incluir cobertura' }}</h3>
+<form method='POST' name='form' action="{{ cobertura_id != null ? '/coberturas/alterar/'~cobertura_id : '/coberturas/incluir'}}" style="border-bottom: 2px solid #727b84; margin-bottom: 20px">
+    <p>
+        <button class="btn btn-success btn-block " type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Pessoa</button>
+    </p>
+    <div class="row block-1">
+        <div class="col">
+            <div class="collapse multi-collapse show" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <select class="form-control input-sm pessoa_incluir" id="pessoa" name="pessoa" >
+                            <option value=""></option>
+                            {% for item in pessoas %}
+                                <option value="{{ item.id }}" {{ cobertura is defined and cobertura.pessoa_id == item.id ? 'selected="selected"' : '' }}>{{ item.nome}}</option>
+                            {% endfor %}    
+                        </select>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button class="btn btn-success btn-block" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Animal</button>
+    </p>
+    <div class="row block-2">
+        <div class="col">
+            <div class="collapse multi-collapse show" id="multiCollapseExample2">
+                <div class="card card-body">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <select class="form-control input-sm animal_incluir" id="animal" name="animal" >
+                            <option value=""></option>
+                            {% for item in animais %}
+                                <option value="{{ item.animal_id }}" {{ cobertura is defined and cobertura.animal_id == item.animal_id ? 'selected="selected"' : '' }}>{{ item.animal_nome}}</option>
+                            {% endfor %}
+                        </select>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button class="btn btn-success btn-block" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Coberturas</button>
+    </p>
+    <div class="row block-3">
+        <div class="col">
+            <div class="collapse multi-collapse show" id="multiCollapseExample3">
+                <div class="card card-body">
+
+                    <div class="form-group">
+                        <label for="garanhao">Garanhão</label>
+                        <select class="form-control input-sm" id="garanhao" name="garanhao" >
+                            <option value=""></option>
+                            {% for item in garanhoes %}
+                                <option value="{{ item.id }}" {{ cobertura is defined and cobertura.garanhao_id == item.id ? 'selected="selected"' : '' }}>{{ item.nome}}</option>
+                            {% endfor %}  
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_cobertura">Dt cobertura</label>
+                        <input type="data_cobertura" class="form-control data" value="{{ cobertura is defined and  cobertura.cobertura_dataCobertura != null  ? cobertura.cobertura_dataCobertura|date('d/m/Y') : '' }}" id="data_cobertura" name="data_cobertura">
+                    </div>
+                    {% if data_parto is defined and previsao_parto_min != '' %}
+                        <div class="form-group">
+                            <label for="data_parto">Dt parto</label>
+                            <input type="data_parto" class="form-control data" value="{{ data_parto is defined and  data_parto != null  ? data_parto : '' }}" id="data_parto" name="data_parto">
+                        </div>
+                        <div class="form-group">
+                            <label for="previsao_parto_min">Previsão parto (Min)</label>
+                            <input type="previsao_parto_min" class="form-control data" value="{{ previsao_parto_min }}" id="previsao_parto_min" name="previsao_parto_min">
+                        </div>
+                        <div class="form-group">
+                            <label for="previsao_parto_max">Previsão parto (Max)</label>
+                            <input type="previsao_parto_max" class="form-control data" value="{{ previsao_parto_max }}" id="previsao_parto_max" name="previsao_parto_max">
+                        </div>
+                    {% endif%}
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <select class="form-control" id="sexo" name="sexo">
+                            <option {{ cobertura is defined and  cobertura.cobertura_sexo == null ? "selected" : "" }}></option>
+                            <option {{ cobertura is defined and  cobertura.cobertura_sexo == 'M' ? "selected" : "" }} value='M' >Macho</option>
+                            <option {{ cobertura is defined and  cobertura.cobertura_sexo == 'F' ? "selected" : "" }} value='F' >Fêmea</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_obito">Óbito</label>
+                        <input type="data_obito" class="form-control" value="{{ cobertura is defined and  cobertura.cobertura_obito != null  ? cobertura.cobertura_obito|date('d/m/Y') : '' }}" id="data_obito" name="data_obito">
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button class="btn btn-success btn-block" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample2">Pagamento</button>
+    </p>
+    <div class="row block-4">
+        <div class="col">
+            <div class="collapse multi-collapse show" id="multiCollapseExample4">
+                <div class="card card-body">
+                    <div class="form-group">
+                        <label for="valor">Valor Cobertura</label>
+                        <input type="text" class="form-control dinheiro" value="{{ valor > 0 ? valor|replace({'.':','}) : '0,00' }}" id="valor" name="valor">
+                    </div>
+                    <div class="form-group">
+                        <label for="parcelas">Parcelas</label>
+                        <select class="form-control" id="parcelas" name="parcelas">
+                            {% for i in 1..12 %}
+                                <option {{ pagamentos|length == i ? 'selected' : ''}} value='{{ i }}' >{{ (i < 10 ? '0' : '') ~ i ~ (i == 1 ? ' vez' : ' vezes') }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                    <div id="row" class="space-table">
+                        <table id="table-coberturas" class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Parcela</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Venc</th>
+                                    <th scope="col">Pago</th>
+                                    <th scope="col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                {% if pagamentos is defined %}
+                                    {% for pagamento in pagamentos %}
+
+                                        <tr class="tr_parcela_{{pagamento.parcela}}">
+                                            <td>
+                                                {{pagamento.parcela}}
+                                                <input type='hidden' value='{{pagamento.parcela}}' name='form[parcela][]'</td>
+                                            <td>
+                                                {{pagamento.valor|replace({'.':','})}}
+                                                <input type='hidden' value='{{pagamento.valor|replace({'.':','})}}' name='form[valor][]'</td>
+                                            </td>
+                                            <td>
+                                                {{pagamento.vencimento|date('d/m/Y')}}
+                                                <input type='hidden' value='{{pagamento.vencimento|date('d/m/Y')}}' name='form[vencimento][]'</td>
+                                            </td>
+                                            <td>
+                                                <i class=' {{ pagamento.pagamento != null ? 'fas fa-check pago' : ''}} class_pago_{{pagamento.parcela}} pointer'></i></td>
+                                    <input type='hidden' value='' name='form[pagamento][]'</td>
+                                    <td>
+                                        <i class='fas fa-pencil-alt edit pointer' data-toggle="modal" data-target="#modal_alterar_{{pagamento.parcela}}"></i> 
+
+                                        <div class="modal" tabindex="-1" role="dialog" id="modal_alterar_{{pagamento.parcela}}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Alterar Pagamento Parcela {{pagamento.parcela}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="parcelas">Parcelas</label>
+                                                            <input type='text' class="form-control data" value='{{ pagamento.pagamento != 'null' ? pagamento.pagamento|date('d/m/Y') : "now"|date("d/m/Y") }}' id='pagamento_{{pagamento.parcela}}' name='pagamento_{{pagamento.parcela}}'</td>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" data-parcela='{{pagamento.parcela}}' data-cobertura='{{cobertura.cobertura_id}}' class="btn btn-danger deletar">Excluir Parcela</button>
+                                                        <button type="button" data-parcela='{{pagamento.parcela}}' data-cobertura='{{cobertura.cobertura_id}}' class="btn btn-primary float-right salvar">Salvar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    </tr>
+                                {% endfor %}
+
+                            {% endif %}
+                            </tbody>
+                        </table>                
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/pesquisa" class="btn btn-danger btn-size-small">Cancelar</a>
+    <button type="submit" class="btn btn-primary float-right btn-size-small">Salvar</button>
+</form>

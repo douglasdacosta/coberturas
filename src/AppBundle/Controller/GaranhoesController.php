@@ -54,11 +54,12 @@ class GaranhoesController extends Controller {
     }
 
     public function listAction($request) {
+
         $garanhoes = $this->getDoctrine()->getRepository(Garanhoes::class);
         $garanhoes = $garanhoes->createQueryBuilder('garanhao');
         $data['search'] = '';
-        if (trim($request->query->get('search')) != '') {
-            $search = $request->query->get('search');
+        if (trim($request->request->get('search')) != '') {
+            $search = $request->request->get('search');
             $garanhoes = $garanhoes
                     ->where('garanhao.nome like :nome')
                     ->setParameter('nome', '%' . $search . '%');

@@ -23,6 +23,10 @@
     width: 100px;
 }
 
+.modal-footer {
+    float: left;
+    display: inline;
+}
 @media (min-width: 375px) { 
     #wrapper #container {
         width: 91%;
@@ -32,13 +36,13 @@
     }
     .form-group {
         /*margin-bottom: 4rem;*/
-        
+
         width: 100%;
         height: 34px;
     }
     .form-control {
         margin-bottom: 0rem;
-            width: 68%;
+        width: 68%;
         margin-right: 0;
         float: right;
         margin: 2px;
@@ -48,6 +52,11 @@
         margin-bottom: 0rem;
         width: 30%;
         float: left;
+    }
+    .form-signin {
+        max-width: 90%;
+        padding: 15px;
+        margin: 0 auto;
     }
 
 }
@@ -60,13 +69,13 @@
     }
     .form-group {
         /*margin-bottom: 4rem;*/
-        
+
         width: 100%;
         height: 34px;
     }
     .form-control {
         margin-bottom: 0rem;
-            width: 68%;
+        width: 68%;
         margin-right: 0;
         float: right;
         margin: 2px;
@@ -78,6 +87,11 @@
         float: left;
     }
 
+    .form-signin {
+        max-width: 90%;
+        padding: 15px;
+        margin: 0 auto;
+    }
 }
 
 @media (min-width: 768px) { 
@@ -89,13 +103,13 @@
     }
     .form-group {
         /*margin-bottom: 4rem;*/
-        
+
         width: 100%;
         height: 34px;
     }
     .form-control {
         margin-bottom: 0rem;
-            width: 75%;
+        width: 75%;
         margin-right: 0;
         float: right;
         margin: 2px;
@@ -107,12 +121,29 @@
         float: left;
     }
 
+    .my-container {
+        width: 90%
+    }
+
+    .form-signin {
+        max-width: 90%;
+        padding: 15px;
+        margin: 0 auto;
+    }
 }
 
 
 @media (min-width: 992px) {
     #wrapper #container {
         width: 900px;
+    }
+    .my-container {
+        width: 50%
+    }
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
     }
 }
 
@@ -122,6 +153,20 @@
     #wrapper #container {
         width: 1000px;
     }
+    .my-container {
+        width: 50%
+    }
+
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+}
+.my-container {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    min-height: 500px;
 }
 
 /* dados cobreturas */
@@ -140,3 +185,70 @@
     background-color: #5cb85c;
 }
 /* dados cobreturas */
+
+.edit {
+    color: #0000F0;
+}
+
+.pago {
+    color: #5cb85c;
+}
+.nao-pago {
+    color: #cccccc;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.delete {
+    color: #C82829;
+}
+
+
+.login-body {
+    padding-top: 200px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 40px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control-label {
+    position: relative;
+    height: auto;
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}

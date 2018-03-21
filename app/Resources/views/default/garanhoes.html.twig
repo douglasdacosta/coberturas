@@ -13,15 +13,15 @@
         <div id="wrapper">
             <div id="container">
                 <div id="row">
-                    <h3>Pesquisar garanhoes</h3>
+                    <h3>Pesquisar Garanhões</h3>
                     <form action="/garanhoes" id="pesquisar" name="pesquisar" class="form-inline" method="post">
                         <div class="form-group">
                             <label for="nome">Nome</label>
-                            <input class="form-control mr-sm-2" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
-                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-                            <a class="btn btn-success my-2 my-sm-0 ml-1" href="/garanhoes/formIncluir">Incluir</a>
+                            <input class="form-control" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
+                            <a class="btn btn-success btn-md btn-size-small" href="/garanhoes/formIncluir">Incluir</a> &nbsp;
+                            <button class=" btn btn-primary btn-md btn-size-small float-right" type="submit">Search</button>
                         </div>
-
+                        <div class="form-group"></div>
                     </form>
                 </div>
                 <div id="row" class="space-table">

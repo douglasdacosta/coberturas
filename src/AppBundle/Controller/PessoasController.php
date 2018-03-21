@@ -58,8 +58,8 @@ class PessoasController extends Controller {
         $pessoas = $this->getDoctrine()->getRepository(Pessoas::class);
         $pessoas = $pessoas->createQueryBuilder('pessoa');
         $data['search'] = '';
-        if (trim($request->query->get('search')) != '') {
-            $search = $request->query->get('search');
+        if (trim($request->request->get('search')) != '') {
+            $search = $request->request->get('search');
             $pessoas = $pessoas
                     ->where('pessoa.nome like :nome')
                     ->setParameter('nome', '%' . $search . '%');

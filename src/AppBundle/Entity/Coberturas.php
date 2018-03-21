@@ -63,7 +63,7 @@ class Coberturas {
 	private $dataCobertura;
 
 	/**
-	 * @var \Garanhoes
+	 * @var \integer
 	 *
 	 * @ORM\ManyToOne(targetEntity="Garanhoes")
 	 * @ORM\JoinColumns({
@@ -73,7 +73,7 @@ class Coberturas {
 	private $garanhao;
 
 	/**
-	 * @var \Animais
+	 * @var \integer
 	 *
 	 * @ORM\ManyToOne(targetEntity="Animais")
 	 * @ORM\JoinColumns({

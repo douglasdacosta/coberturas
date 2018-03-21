@@ -7,10 +7,15 @@
     {{ parent() }}
 {% endblock %}
 {% block body %}
-    {% include 'default/dados_coberturas.html.twig' %}
+    {% if typeForm == 'lista'%}
+        {% include 'default/dados_coberturas.html.twig' %}
+    {% else %}
+        {% include 'default/incluir_alterar_coberturas.html.twig' %}
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('/bundles/app/js/coberturas.js')}}"></script>
 {% endblock %}
 
 {% block stylesheets %}

@@ -22,4 +22,12 @@ class FieldsValidations {
         $number = preg_replace('/\./', ',', $number);
         return $number;
     }
+    public static function dateToSave($date) {     
+        $date = implode('-',array_reverse(explode('/', $date)));
+        return new \DateTime($date);
+    }
+    public static function dateToView($date) {     
+        $date = implode('/',array_reverse(explode('-', $date)));
+        return $date;
+    }
 }
