@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 108.167.132.57
+    database_port: 3306
+    database_name: dougl179_coberturas
+    database_user: dougl179_cobertu
+    database_password: c0b3rtur4as#
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: doug.d.costa@gmail.com
+    mailer_password: null
+    secret: e5057a2010f9c0de906323236928b266c5c7387f
