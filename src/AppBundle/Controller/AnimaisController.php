@@ -122,19 +122,27 @@ class AnimaisController extends Controller {
 
     public function incluir($request) {
         $animaisClass = new Animais();
-        
-        $animaisClass->setNome($request->request->get('nome'));
-        $animaisClass->setIdade($request->request->get('idade'));
-        $animaisClass->setLocalAnimal($request->request->get('local'));
-        $animaisClass->setPelagem($request->request->get(''));
+        $data_request = $request->request->get('form');
+        $em = $this->getDoctrine()->getManager();
+
+        $animaisClass->setNome($data_request['nome']);
+        $animaisClass->setIdade($data_request['idade']);
+        $animaisClass->setLocalAnimal($data_request['localAnimal']);
+        $animaisClass->setPelagem($data_request['pelagem']);
         $animaisClass->setAtivo(1);
 
-        $em = $this->getDoctrine()->getManager();
+        $pessoaClass = $em->getRepository(Pessoas::class)->find($data_request['pessoa']);
+        $pessoaAnimaisClass =  new PessoasAnimais();
+        
+        $pessoaAnimaisClass->setPessoa($pessoaClass);
+        $pessoaAnimaisClass->setAnimal($animaisClass);
+        
         $em->persist($animaisClass);
+        $em->persist($pessoaAnimaisClass);
         $em->flush();
         $data['typeForm'] = 'lista';
         
-        $data['search'] = $dataAnimais->getNome();
+        $data['search'] = $data_request['nome'];
         return $data;
     }
 

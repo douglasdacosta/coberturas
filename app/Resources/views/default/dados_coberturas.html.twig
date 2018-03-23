@@ -78,7 +78,7 @@
                             <label for="data_obito">Óbito</label>
                             <input type="data_obito" class="form-control" value="{{ item_cobertura.cobertura_obito != null  ? item_cobertura.cobertura_obito|date('d/m/Y') : '' }}" id="data_obito">
                         </div>
-                        <a class="btn btn-info my-2 my-sm-0 ml-1 float-right" href="{{ '/coberturas/formAlterar?pessoa=' ~ cobertura.pessoa_id ~ '&animal=' ~ item_cobertura.animal_id ~ '&cobertura=' ~ item_cobertura.cobertura_id  ~ '&formType='}}">Alterar</a>
+                        <a class="btn btn-info my-2 my-sm-0 ml-1 float-right" href="{{ '/coberturas/web/coberturas/formAlterar?pessoa=' ~ cobertura.pessoa_id ~ '&animal=' ~ item_cobertura.animal_id ~ '&cobertura=' ~ item_cobertura.cobertura_id  ~ '&formType='}}">Alterar</a>
                     </form>                
                 {% endfor %}
             </div>

@@ -62,6 +62,8 @@ class CoberturasController extends Controller {
     }
 
     public function listAction($request, $helpersServices) {
+        
+        
         $data['pessoas'] = $helpersServices->getPessoas();
         $data['garanhoes'] = $helpersServices->getGaranhoes();
         $objCoberturas = $this->getDoctrine()
@@ -105,7 +107,7 @@ class CoberturasController extends Controller {
     public function alterar($request, $id) {
         $em = $this->getDoctrine()->getManager();
         $coberturas = $em->getRepository(Coberturas::class)->find($id);
-        $pagamento = $em->getRepository(Pagamentos::class)->findByCoberturaId($id);
+        $pagamentos = $em->getRepository(Pagamentos::class)->findByCoberturaId($id);
         $garanhao = $em->getRepository(Garanhoes::class)->find($request->request->get('garanhao'));
         $animal = $em->getRepository(Animais::class)->find($request->request->get('animal'));
         $dataParto = FieldsValidations::dateToSave($request->request->get('data_cobertura'));
@@ -117,10 +119,15 @@ class CoberturasController extends Controller {
         $coberturas->setPrevisaoParto(FieldsValidations::dateToSave($data_parto['previsao_parto_min']));
         $coberturas->setSexo($request->request->get('sexo') ? $request->request->get('sexo') : null);
         $coberturas->setObito($request->request->get('data_obito') ? FieldsValidations::dateToSave($request->request->get('data_obito')) : null);
-
+        
+        
+        
         $form = $request->request->get('form');
-        if ($pagamento) {
-            $em->remove($pagamento);
+        if ($pagamentos) {
+            foreach ($pagamentos as $key => $pagamento) {
+                $em->remove($pagamento);
+                $em->flush();
+            }
         }
 
         foreach ($form['parcela'] as $key => $parcela) {
@@ -171,8 +178,6 @@ class CoberturasController extends Controller {
         $soma = 0;
         foreach ($pagamentos as $value) {
             $soma = $soma + $value->getValor();
-            dump($value->getValor());
-            dump($soma);
         }               
         $data['valor'] = number_format($soma, 2, ',', '');
         $data['pagamentos'] = $pagamentos;
@@ -199,7 +204,8 @@ class CoberturasController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $garanhao = $em->getRepository(Garanhoes::class)->find($request->request->get('garanhao'));
         $animal = $em->getRepository(Animais::class)->find($request->request->get('animal'));
-        $dataParto = $this->calculaDataParto($request->request->get('data_cobertura'));
+        $data_cobertura = FieldsValidations::dateToSave($request->request->get('data_cobertura'));
+        $dataParto = $this->calculaDataParto($data_cobertura->format('Y-m-d'));
 
         $coberturas->setGaranhao($garanhao);
         $coberturas->setAnimal($animal);
@@ -210,7 +216,22 @@ class CoberturasController extends Controller {
         $coberturas->setObito($request->request->get('data_obito') ? FieldsValidations::dateToSave($request->request->get('data_obito')) : null);
         $coberturas->setAtivo(1);
         $ema = $this->getDoctrine()->getManager();
+        
+        $form = $request->request->get('form');
+        
         $ema->persist($coberturas);
+        
+        foreach ($form['parcela'] as $key => $parcela) {   
+            $pagamentos = new Pagamentos();
+            $pagamentos->setCoberturaId($coberturas);
+            $pagamentos->setParcela($parcela);
+            $pagamentos->setValor(str_replace(',', '.', str_replace('.', '', $form['valor'][$key])));
+            $pagamentos->setVencimento($form['vencimento'][$key] ? FieldsValidations::dateToSave($form['vencimento'][$key]) : null);
+            $pagamentos->setPagamento($form['pagamento'][$key] ? FieldsValidations::dateToSave($form['pagamento'][$key]) : null);
+            $em->persist($pagamentos);
+        }
+        
+        
         $ema->flush();
         $data['typeForm'] = 'lista';
         $data['search'] = '';

@@ -14,11 +14,11 @@
             <div id="container">
                 <div id="row">
                     <h3>Pesquisar Garanhões</h3>
-                    <form action="/garanhoes" id="pesquisar" name="pesquisar" class="form-inline" method="post">
+                    <form action="/coberturas/web/garanhoes" id="pesquisar" name="pesquisar" class="form-inline" method="post">
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input class="form-control" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
-                            <a class="btn btn-success btn-md btn-size-small" href="/garanhoes/formIncluir">Incluir</a> &nbsp;
+                            <a class="btn btn-success btn-md btn-size-small" href="/coberturas/web/garanhoes/formIncluir">Incluir</a> &nbsp;
                             <button class=" btn btn-primary btn-md btn-size-small float-right" type="submit">Search</button>
                         </div>
                         <div class="form-group"></div>
@@ -36,7 +36,7 @@
                             {% for garanhao in garanhoes %}
                                 <tr>
                                     <th scope="row">{{garanhao.id}}</th>
-                                    <td><a href='{{'/garanhoes/formAlterar/' ~ garanhao.id}}'>{{garanhao.nome}}</a></td>
+                                    <td><a href='{{'/coberturas/web/garanhoes/formAlterar/' ~ garanhao.id}}'>{{garanhao.nome}}</a></td>
                                 </tr>            
 
                             {% endfor %}
@@ -48,7 +48,7 @@
     {% else %}    
         <div id="row">
             <h2>Garanhao</h2>
-            {{ form_start(form, {'action': form.vars.value.id != null ? '/garanhoes/alterar/'~form.vars.value.id : '/garanhoes/incluir' , 'name': 'garanhoes', 'method':'POST'}) }}
+            {{ form_start(form, {'action': form.vars.value.id != null ? '/coberturas/web/garanhoes/alterar/'~form.vars.value.id : '/coberturas/web/garanhoes/incluir' , 'name': 'garanhoes', 'method':'POST'}) }}
             <div class="form-group">
                 {{ form_label(form.nome)}}
                 {{ form_widget(form.nome, { 'attr': { 'class': 'form-control input-sm' }}) }}
@@ -65,7 +65,7 @@
                 {{ form_label(form.arvoreGenealogica)}}
                 {{ form_widget(form.arvoreGenealogica, { 'attr': { 'class': 'form-control input-sm' }}) }}
             </div>
-            <a href="/garanhoes" class="btn btn-danger btn-size-small">Cancelar</a>
+            <a href="/coberturas/web/garanhoes" class="btn btn-danger btn-size-small">Cancelar</a>
             <button type="submit" class="btn btn-primary float-right btn-size-small">Salvar</button>
 
         </form>

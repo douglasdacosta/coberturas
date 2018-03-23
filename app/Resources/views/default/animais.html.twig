@@ -14,11 +14,11 @@
             <div id="container">
                 <div id="row">
                     <h3>Pesquisar Animais</h3>
-                    <form action="/animais" id="pesquisar" name="pesquisar" class="form-inline" method="post">
+                    <form action="/coberturas/web/animais" id="pesquisar" name="pesquisar" class="form-inline" method="post">
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input class="form-control" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
-                            <a class="btn btn-success btn-md btn-size-small" href="/animais/formIncluir">Incluir</a> &nbsp;
+                            <a class="btn btn-success btn-md btn-size-small" href="/coberturas/web/animais/formIncluir">Incluir</a> &nbsp;
                             <button class=" btn btn-primary btn-md btn-size-small float-right" type="submit">Search</button>
                         </div>
                         <div class="form-group"></div>
@@ -36,7 +36,7 @@
                             {% for animal in animais %}
                                 <tr>
                                     <th scope="row">{{animal.id}}</th>
-                                    <td><a href='{{'/animais/formAlterar/' ~ animal.id}}'>{{animal.nome}}</a></td>
+                                    <td><a href='{{'/coberturas/web/animais/formAlterar/' ~ animal.id}}'>{{animal.nome}}</a></td>
                                 </tr>            
 
                             {% endfor %}
@@ -48,7 +48,7 @@
     {% else %}    
         <div id="row">
             <h2>Animal</h2>
-            {{ form_start(form, {'action': form.vars.value.id != null ? '/animais/alterar/'~form.vars.value.id : '/animais/incluir' , 'name': 'animais', 'method':'POST'}) }}
+            {{ form_start(form, {'action': form.vars.value.id != null ? '/coberturas/web/animais/alterar/'~form.vars.value.id : '/coberturas/web/animais/incluir' , 'name': 'animais', 'method':'POST'}) }}
             <div class="form-group">
                 {{ form_label(form.nome)}}
                 {{ form_widget(form.nome, { 'attr': { 'class': 'form-control input-sm' }}) }}
@@ -69,11 +69,11 @@
                 <label for="pessoa">Pessoa</label>
                 <select class="form-control input-sm" id="pessoa" name="form[pessoa]" >
                     {% for item in pessoas %}
-                        <option value="{{ item.id }}" {{ pessoasAnimais != null and pessoasAnimais.pessoa.id == item.id ? 'selected="selected"' : '' }}>{{ item.nome}}</option>
+                        <option value="{{ item.id }}" {{ pessoasAnimais is defined and pessoasAnimais.pessoa.id == item.id ? 'selected="selected"' : '' }}>{{ item.nome}}</option>
                     {% endfor %}    
                 </select>
             </div>  
-            <a href="/animais" class="btn btn-danger btn-size-small">Cancelar</a>
+            <a href="/coberturas/web/animais" class="btn btn-danger btn-size-small">Cancelar</a>
             <button type="submit" class="btn btn-primary float-right btn-size-small">Salvar</button>
 
         </form>

@@ -1,5 +1,5 @@
 <h3>{{ cobertura_id != null ? 'Alterar Cobertura cod: ' ~ cobertura.cobertura_id : 'Incluir cobertura' }}</h3>
-<form method='POST' name='form' action="{{ cobertura_id != null ? '/coberturas/alterar/'~cobertura_id : '/coberturas/incluir'}}" style="border-bottom: 2px solid #727b84; margin-bottom: 20px">
+<form method='POST' name='form' action="{{ cobertura_id != null ? '/coberturas/web/coberturas/alterar/'~cobertura_id : '/coberturas/web/coberturas/incluir'}}" style="border-bottom: 2px solid #727b84; margin-bottom: 20px">
     <p>
         <button class="btn btn-success btn-block " type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Pessoa</button>
     </p>
@@ -101,13 +101,13 @@
                 <div class="card card-body">
                     <div class="form-group">
                         <label for="valor">Valor Cobertura</label>
-                        <input type="text" class="form-control dinheiro" value="{{ valor > 0 ? valor|replace({'.':','}) : '0,00' }}" id="valor" name="valor">
+                        <input type="text" class="form-control dinheiro" value="{{ valor is defined and valor > 0 ? valor|replace({'.':','}) : '0,00' }}" id="valor" name="valor">
                     </div>
                     <div class="form-group">
                         <label for="parcelas">Parcelas</label>
                         <select class="form-control" id="parcelas" name="parcelas">
                             {% for i in 1..12 %}
-                                <option {{ pagamentos|length == i ? 'selected' : ''}} value='{{ i }}' >{{ (i < 10 ? '0' : '') ~ i ~ (i == 1 ? ' vez' : ' vezes') }}</option>
+                                <option {{ pagamentos is defined and pagamentos|length == i ? 'selected' : ''}} value='{{ i }}' >{{ (i < 10 ? '0' : '') ~ i ~ (i == 1 ? ' vez' : ' vezes') }}</option>
                             {% endfor %}
 
                         </select>
@@ -156,8 +156,8 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-group">
-                                                            <label for="parcelas">Parcelas</label>
-                                                            <input type='text' class="form-control data" value='{{ pagamento.pagamento != 'null' ? pagamento.pagamento|date('d/m/Y') : "now"|date("d/m/Y") }}' id='pagamento_{{pagamento.parcela}}' name='pagamento_{{pagamento.parcela}}'</td>
+                                                            <label for="parcelas" class="col-5">Data pagamento</label>
+                                                            <input type='text' class="form-control col-5 data" value='{{ pagamento.pagamento != 'null' ? pagamento.pagamento|date('d/m/Y') : "now"|date("d/m/Y") }}' id='pagamento_{{pagamento.parcela}}' name='pagamento_{{pagamento.parcela}}'</td>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -180,6 +180,6 @@
             </div>
         </div>
     </div>
-    <a href="/pesquisa" class="btn btn-danger btn-size-small">Cancelar</a>
-    <button type="submit" class="btn btn-primary float-right btn-size-small">Salvar</button>
+    <a href="/coberturas/web/pesquisa" class="btn btn-danger btn-size-small">Cancelar</a>
+    <button type="submit" class="salvar_form btn btn-primary float-right btn-size-small">Salvar</button>
 </form>

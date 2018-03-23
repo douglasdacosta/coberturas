@@ -1,0 +1,8 @@
+[20-Mar-2018 21:06:58 America/Chicago] PHP Fatal error:  Uncaught Symfony\Component\Config\Exception\FileLocatorFileNotFoundException: The file "parameters.yml" does not exist (in: /home/dougl179/public_html/coberturas/app/config). in /home/dougl179/public_html/coberturas/vendor/symfony/symfony/src/Symfony/Component/Config/FileLocator.php:71
+Stack trace:
+#0 /home/dougl179/public_html/coberturas/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Config/FileLocator.php(52): Symfony\Component\Config\FileLocator->locate('parameters.yml', '/home/dougl179/...', false)
+#1 /home/dougl179/public_html/coberturas/vendor/symfony/symfony/src/Symfony/Component/Config/Loader/FileLoader.php(136): Symfony\Component\HttpKernel\Config\FileLocator->locate('parameters.yml', '/home/dougl179/...', false)
+#2 /home/dougl179/public_html/coberturas/vendor/symfony/symfony/src/Symfony/Component/Config/Loader/FileLoader.php(90): Symfony\Component\Config\Loader\FileLoader->doImport('parameters.yml', NULL, false, '/home/dougl179/...')
+#3 /home/dougl179/public_html/coberturas/vendor/symfony/s in /home/dougl179/public_html/coberturas/vendor/symfony/symfony/src/Symfony/Component/Config/Loader/FileLoader.php on line 168
+[21-Mar-2018 21:43:58 America/Chicago] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dougl179/public_html/coberturas/src/AppBundle/Controller/AnimaisController.php on line 126
+[21-Mar-2018 21:47:53 America/Chicago] PHP Parse error:  syntax error, unexpected ')' in /home/dougl179/public_html/coberturas/src/AppBundle/Controller/AnimaisController.php on line 125

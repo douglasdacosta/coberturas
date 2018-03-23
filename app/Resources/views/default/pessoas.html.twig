@@ -14,11 +14,11 @@
             <div id="container">
                 <div id="row">
                     <h3>Pesquisar Pessoas</h3>
-                    <form action="/pessoas" id="pesquisar" name="pesquisar" class="form-inline" method="post">
+                    <form action="/coberturas/web/pessoas" id="pesquisar" name="pesquisar" class="form-inline" method="post">
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input class="form-control" value="{{ search != '' ? search : ''}}" type="text" id="search" name="search" placeholder="" autofocus="autofocus">
-                            <a class="btn btn-success btn-md btn-size-small" href="/pessoas/formIncluir">Incluir</a> &nbsp;
+                            <a class="btn btn-success btn-md btn-size-small" href="/coberturas/web/pessoas/formIncluir">Incluir</a> &nbsp;
                             <button class=" btn btn-primary btn-md btn-size-small float-right" type="submit">Search</button>
                         </div>
                         <div class="form-group"></div>
@@ -36,7 +36,7 @@
                             {% for pessoa in pessoas %}
                                 <tr>
                                     <th scope="row">{{pessoa.id}}</th>
-                                    <td><a href='{{'/pessoas/formAlterar/' ~ pessoa.id}}'>{{pessoa.nome}}</a></td>
+                                    <td><a href='{{'/coberturas/web/pessoas/formAlterar/' ~ pessoa.id}}'>{{pessoa.nome}}</a></td>
                                 </tr>            
 
                             {% endfor %}
@@ -48,7 +48,7 @@
     {% else %}        
         <div id="row">
             <h2>Pessoas</h2>
-            {{ form_start(form, {'action': form.vars.value.id != null ? '/pessoas/alterar/'~form.vars.value.id : '/pessoas/incluir' , 'name': 'pessoas', 'method':'POST'}) }}
+            {{ form_start(form, {'action': form.vars.value.id != null ? '/coberturas/web/pessoas/alterar/'~form.vars.value.id : '/coberturas/web/pessoas/incluir' , 'name': 'pessoas', 'method':'POST'}) }}
             <div class="form-group">
                 {{ form_label(form.nome)}}
                 {{ form_widget(form.nome, { 'attr': { 'class': 'form-control input-sm' }}) }}
@@ -93,7 +93,7 @@
                 {{ form_label(form.cep)}}
                 {{ form_widget(form.cep, { 'attr': { 'class': 'form-control input-sm cep' }}) }}
             </div>                
-            <a href="/pessoas" class="btn btn-danger btn-size-small">Cancelar</a>
+            <a href="/coberturas/web/pessoas" class="btn btn-danger btn-size-small">Cancelar</a>
             <button type="submit" class="btn btn-primary float-right btn-size-small">Salvar</button>
             {{ form_end(form) }}
         </div>
