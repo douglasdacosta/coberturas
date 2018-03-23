@@ -378,7 +378,7 @@ class CoberturasController extends Controller {
                             <i class='" . $classPago . " pointer'></i></td>
                             <input type='hidden' value='' name='form[pagamento][]'</td>
                         <td>
-                            <i class='fas fa-pencil-alt edit pointer'></i> <i class='fas fa-times-circle delete pointer'></i></td>
+                            <i class='fas fa-pencil-alt edit pointer'></i></td>
                         </tr>";
         }
 

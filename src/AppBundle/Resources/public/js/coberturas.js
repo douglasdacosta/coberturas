@@ -28,7 +28,7 @@ $(document).ready(function () {
         
         if( $('#garanhao').val() == '') {
             $('#garanhao').focus();
-            alert('Nenhum garanhão encontrado');
+            alert('Nenhum garanhÃ£o encontrado');
             return false;
         }
         
