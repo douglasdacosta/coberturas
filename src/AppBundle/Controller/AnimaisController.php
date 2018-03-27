@@ -102,7 +102,7 @@ class AnimaisController extends Controller {
         $animaisClass = $em->getRepository(Animais::class)->find($id);
         $form = $this->createFormBuilder($animaisClass)
                 ->add('id', HiddenType::class)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('idade', TextType::class, array('required' => false))
                 ->add('localAnimal', TextType::class, array('required' => false))
                 ->add('pelagem', TextType::class, array('required' => false))
@@ -150,7 +150,7 @@ class AnimaisController extends Controller {
         $animaisClass = new Animais();
         $form = $this->createFormBuilder($animaisClass)
                 ->add('id', HiddenType::class)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('idade', TextType::class, array('required' => false))
                 ->add('localAnimal', TextType::class, array('required' => false))
                 ->add('pelagem', TextType::class, array('required' => false))

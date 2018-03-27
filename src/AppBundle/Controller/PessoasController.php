@@ -74,7 +74,7 @@ class PessoasController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $pessoasClass = $em->getRepository(Pessoas::class)->find($id);
         $form = $this->createFormBuilder($pessoasClass)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('email', TextType::class, array('required' => false))
                 ->add('cpfCnpj', TextType::class, array('required' => false))
                 ->add('telefoneCel', TextType::class, array('required' => false))
@@ -112,7 +112,7 @@ class PessoasController extends Controller {
         $pessoasClass = $em->getRepository(Pessoas::class)->find($id);
         $form = $this->createFormBuilder($pessoasClass)
                 ->add('id', HiddenType::class)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('email', TextType::class, array('required' => false))
                 ->add('cpfCnpj', TextType::class, array('required' => false))
                 ->add('telefoneCel', TextType::class, array('required' => false))
@@ -135,7 +135,7 @@ class PessoasController extends Controller {
         $pessoasClass = new Pessoas();
         $form = $this->createFormBuilder($pessoasClass)
                 ->add('id', HiddenType::class)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('email', TextType::class, array('required' => false))
                 ->add('cpfCnpj', TextType::class, array('required' => false))
                 ->add('telefoneCel', TextType::class, array('required' => false))
@@ -175,7 +175,7 @@ class PessoasController extends Controller {
         $pessoasClass = new Pessoas();
         $form = $this->createFormBuilder($pessoasClass)
                 ->add('id', HiddenType::class)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('email', TextType::class, array('required' => false))
                 ->add('cpfCnpj', TextType::class, array('required' => false))
                 ->add('telefoneCel', TextType::class, array('required' => false))

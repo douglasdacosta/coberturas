@@ -74,7 +74,7 @@ class GaranhoesController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $garanhoesClass = $em->getRepository(Garanhoes::class)->find($id);
         $form = $this->createFormBuilder($garanhoesClass)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('registro', TextType::class, array('required' => false))
                 ->add('valorArrecadado', TextType::class, array('required' => false))
                 ->add('arvoreGenealogica', TextType::class, array('required' => false))
@@ -97,7 +97,7 @@ class GaranhoesController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $garanhoesClass = $em->getRepository(Garanhoes::class)->find($id);
         $form = $this->createFormBuilder($garanhoesClass)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('registro', TextType::class, array('required' => false))
                 ->add('valorArrecadado', TextType::class, array('required' => false))
                 ->add('arvoreGenealogica', TextType::class, array('required' => false))
@@ -114,7 +114,7 @@ class GaranhoesController extends Controller {
     public function incluir($request) {
         $garanhoesClass = new Garanhoes();
         $form = $this->createFormBuilder($garanhoesClass)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('registro', TextType::class, array('required' => false))
                 ->add('valorArrecadado', TextType::class, array('required' => false))
                 ->add('arvoreGenealogica', TextType::class, array('required' => false))
@@ -139,7 +139,7 @@ class GaranhoesController extends Controller {
     public function formIncluir($request) {
         $garanhoesClass = new Garanhoes();
         $form = $this->createFormBuilder($garanhoesClass)
-                ->add('nome', TextType::class)
+                ->add('nome', TextType::class, array('required' => true))
                 ->add('registro', TextType::class, array('required' => false))
                 ->add('valorArrecadado', TextType::class, array('required' => false))
                 ->add('arvoreGenealogica', TextType::class, array('required' => false))
